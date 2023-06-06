@@ -62,3 +62,8 @@ def get_all_destinations() -> List[DestinationsSchema]:
     destinations = session.query(Destinations).options(joinedload(Destinations.user)).all()
     destinations_schema = [DestinationsSchema.from_orm(destination) for destination in destinations]
     return destinations_schema
+
+@app.post('/destinations')
+def add_destinations(destinations: List[DestinationsSchema]):
+    destinations.append(destinations)
+    return create_dest
