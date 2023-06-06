@@ -33,6 +33,7 @@ if __name__=='__main__':
             name = random.choice(destination_names),
             image = fake.unique.url(),
             description = fake.unique.sentence(),
+            category = random.choice(categories),
             location = random.choice(locations),
             visit_url = fake.unique.url(),
             interested = False,

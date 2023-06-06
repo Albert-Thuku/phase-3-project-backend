@@ -20,6 +20,7 @@ class Destinations(Base):
     name = Column(String())
     image = Column(String())
     description = Column(String())
+    category = Column(String())
     location = Column(String())
     visit_url = Column(String())
     interested = Column(Boolean(False))
