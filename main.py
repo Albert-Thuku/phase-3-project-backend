@@ -64,6 +64,18 @@ def get_all_destinations() -> List[DestinationsSchema]:
     return destinations_schema
 
 @app.post('/destinations')
-def add_destinations(destinations: List[DestinationsSchema]):
-    destinations.append(destinations)
-    return create_dest
+def add_destinations(destinations: DestinationsSchema)->DestinationsSchema:
+    destin = Destinations(**dict(destinations))
+    # session.add(destin)
+    session.add(destin)
+    session.commit()
+
+    return destin
+
+@app.post('/users')
+def add_users(users: UsersSchema)->UsersSchema:
+    user0 = Users (**dict(users))
+    session.add(user0)
+    session.commit()
+    
+    return user0
