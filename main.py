@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List, Optional
 from models import Users, Destinations, session
-
+from sqlalchemy.orm import joinedload
 
 app = FastAPI()
 
@@ -59,5 +59,6 @@ def get_all_users() -> List[UsersSchema]:
 
 @app.get('/destinations')
 def get_all_destinations() -> List[DestinationsSchema]:
-    destinations = session.query(Destinations).all()
-    return destinations
+    destinations = session.query(Destinations).options(joinedload(Destinations.user)).all()
+    destinations_schema = [DestinationsSchema.from_orm(destination) for destination in destinations]
+    return destinations_schema

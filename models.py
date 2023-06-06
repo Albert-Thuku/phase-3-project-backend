@@ -22,7 +22,7 @@ class Destinations(Base):
     description = Column(String())
     location = Column(String())
     visit_url = Column(String())
-    interested = Column(Boolean())
+    interested = Column(Boolean(False))
     user_id = Column(Integer(), ForeignKey('users.id'))
 
 Base.metadata.create_all(engine)
