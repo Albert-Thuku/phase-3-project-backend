@@ -32,7 +32,6 @@ class DestinationsSchema(BaseModel):
     location:str
     visit_url:str
     interested:bool
-    user_id:int
 
     class Config:
         orm_mode = True
@@ -46,7 +45,20 @@ class UpdateDestinationsSchema(BaseModel):
     location:Optional [str]
     visit_url:Optional [str]
     interested:Optional [bool]
+
+    class Config:
+        orm_mode = True
+
+class InterestSchema(BaseModel):
+    user_id:int
+    destination_id:int
+
+    class Config:
+        orm_mode = True
+
+class UpdateInterestSchema(BaseModel):
     user_id:Optional [int]
+    destination_id:Optional [int]
 
     class Config:
         orm_mode = True

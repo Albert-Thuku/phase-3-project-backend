@@ -3,7 +3,7 @@ from logging.config import fileConfig
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
-from alembic import context
+from alembic import context, op
 from models import Base
 
 # this is the Alembic Config object, which provides
@@ -70,7 +70,11 @@ def run_migrations_online() -> None:
         )
 
         with context.begin_transaction():
-            context.run_migrations()
+            if context.get_context().dialect.name == 'sqlite':
+                context.run_migrations()
+            else:
+                context.run_migrations(online=True)
+
 
 
 if context.is_offline_mode():

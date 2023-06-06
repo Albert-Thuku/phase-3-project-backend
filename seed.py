@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from models import Users, Destinations
+from models import Users, Destinations, Users_Destinations
 import random
 from faker import Faker
 if __name__=='__main__':
@@ -37,12 +37,22 @@ if __name__=='__main__':
             location = random.choice(locations),
             visit_url = fake.unique.url(),
             interested = False,
-            user_id = random.randint(1,7)
         )
 
         session.add(destination)
         session.commit()
         destinations.append(destination)
+
+    interests = []
+    for i in range(6):
+        interest = Users_Destinations(
+            user_id = random.randint(1,6),
+            destination_id = random.randint(1,6)
+        )
+
+        session.add(interest)
+        session.commit()
+        interests.append(interest)
 
     session.bulk_save_objects(destinations)
     session.commit()
