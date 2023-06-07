@@ -25,8 +25,6 @@ class Destinations(Base):
     category = Column(String())
     location = Column(String())
     visit_url = Column(String())
-    interested = Column(Boolean(False))
-    
 
     users = association_proxy('users_destinations', 'users', creator=lambda us: Users_Destinations(users=us))
     users_destinations = relationship('Users_Destinations',back_populates='destination', cascade='all, delete-orphan')
