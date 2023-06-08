@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel, validate_arguments
 from typing import List, Optional
 from models import Users, Destinations, session, Users_Destinations
 from fastapi.middleware.cors import CORSMiddleware
@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
 origins=[
-    'http://localhost:3000'
+    'http://localhost:3001'
 ]
 
 app.add_middleware  (
@@ -103,8 +103,9 @@ def add_destinations(destinations: UpdateDestinationsSchema)->DestinationsSchema
     return destin 
 
 #create new user data
-@app.post('/update/users')
-def add_users(users: UpdateUsersSchema)->UsersSchema:
+@app.post('/signup')
+@validate_arguments
+def add_users(users: UpdateUsersSchema)->UpdateUsersSchema:
     user0 = Users (**dict(users))
     session.add(user0)
     session.commit()
