@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
 origins=[
-    'https://travel-guru-backend.onrender.com'
+    'https://kaleidoscopic-bavarois-0a0624.netlify.app/'
 ]
 
 app.add_middleware  (
