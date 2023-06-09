@@ -16,6 +16,14 @@ Install the required dependencies by running the following command:
 
 pipenv install; pipenv shell
 
+## Front-end Application
+The following is the github link for the frontend for the following web application:
+https://github.com/Albert-Thuku/phase-3-project-frontend
+
+clone the above repository and cd into the root directory.
+To run the application:
+npm start
+
 
 ## Database Configuration
 The Travel Guru App uses an SQLite database. The database is defined in the models.py file and can be found at project.db. If you want to use a different database, make sure to update the SQLAlchemy configuration in the code.
