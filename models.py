@@ -3,7 +3,7 @@ from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 from sqlalchemy.orm import relationship, backref, sessionmaker, declarative_base
 from sqlalchemy.ext.associationproxy import association_proxy
 
-engine = create_engine('sqlite:///project.db')
+engine = create_engine('sqlite:///project.db', connect_args={'check_same_thread':False})
 
 Base = declarative_base()
 

@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, validate_arguments
 from typing import List, Optional
-from models import Users, Destinations, session, Users_Destinations
+from models import Users, Destinations, session, Users_Destinations, engine, sessionmaker
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -17,6 +17,9 @@ app.add_middleware(
     allow_methods=["GET", "POST", "PATCH", "DELETE"],
     allow_headers=["*"],
 )
+
+Session = sessionmaker(bind = engine)
+session = Session()
 
 class UsersSchema(BaseModel):
     id:int
